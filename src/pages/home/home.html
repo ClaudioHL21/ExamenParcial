@@ -1,14 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Videojuegos
     </ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click) = "buscar()">
+        <ion-icon name = "search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar> 
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding style = "background-color:#8AB0AB">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let vjuego of vjuegos" col-6>
+          <ion-card (click)="verVjuego(vjuego)">
+            <img *ngIf = "vjuego.ad.hasOwnProperty('thumbnail')"
+                 src = "https://img.segundamano.mx/cover/{{vjuego.ad.thumbnail.path}}">
+            <ion-card-content>
+              <h2 *ngIf = "vjuego.ad.hasOwnProperty('subject')">
+                {{vjuego.ad.subject}}
+              </h2>
+              <p *ngIf = "vjuego.ad.hasOwnProperty('locations')">
+                {{vjuego.ad.locations[0].locations[0].label}}, {{vjuego.ad.locations[0].label}}
+              </p>
+                <h2 *ngIf = "vjuego.ad.hasOwnProperty('list_price')">
+                    {{vjuego.ad.list_price.label}}
+                  </h2>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

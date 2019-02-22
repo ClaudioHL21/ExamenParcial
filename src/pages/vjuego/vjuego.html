@@ -1,0 +1,47 @@
+<!--
+  Generated template for the VjuegoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Video Juegos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style = "background-color:#26413C">
+<ion-card>
+  <ion-slides pager>
+    <ion-slide *ngFor = "let img of imgs">
+      <img src = "https://img.segundamano.mx/medium/{{img.path}}">
+    </ion-slide>
+  </ion-slides>
+</ion-card>
+<ion-card>
+  <ion-item>
+    {{vjuego.ad.subject}}
+    <ion-icon *ngIf = "!fav.existe(vjuego)" name ="heart" item-end (click) = "favoritos(vjuego)"></ion-icon>
+      <ion-icon *ngIf = "fav.existe(vjuego)" name = "heart" color = "danger" item-end (click) = "fav.remove(vjuego)"></ion-icon>
+   
+  </ion-item>
+  <ion-item>
+    <h2 *ngIf = "vjuego.ad.hasOwnProperty('list_price')">
+        {{vjuego.ad.list_price.label}}
+      </h2>
+      <ion-icon name = "share" item-end></ion-icon>
+</ion-item>
+<h2 *ngIf="vjuego.ad.hasOwnProperty('user')">
+  {{vjuego.ad.user.account.name}}
+</h2>
+<h2 *ngIf="vjuego.ad.hasOwnProperty('list_time')">
+  Publicado: {{vjuego.ad.list_time.label}}
+</h2>
+<h2 *ngIf="vjuego.ad.hasOwnProperty('body')">
+{{vjuego.ad.body}}
+</h2>
+<p *ngIf = "vjuego.ad.hasOwnProperty('locations')">
+  {{vjuego.ad.locations[0].locations[0].label}}, {{vjuego.ad.locations[0].label}}, {{vjuego.ad.locations[0].locations[0].locations[0].label}} 
+</p>
+</ion-card>
+</ion-content>

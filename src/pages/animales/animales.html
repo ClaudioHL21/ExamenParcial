@@ -1,0 +1,35 @@
+<!--
+  Generated template for the AnimalesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Mascotas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style = "background-color:#03120E">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let animal of animales" col-6>
+          <ion-card (click)="verAnimal(animal)">
+            <img *ngIf = "animal.ad.hasOwnProperty('thumbnail')"
+                 src = "https://img.segundamano.mx/cover/{{animal.ad.thumbnail.path}}">
+            <ion-card-content>
+              <h2 *ngIf = "animal.ad.hasOwnProperty('subject')">
+                {{animal.ad.subject}}
+              </h2>
+              <p *ngIf = "animal.ad.hasOwnProperty('locations')">
+                {{animal.ad.locations[0].locations[0].label}}, {{animal.ad.locations[0].label}}
+              </p>
+                <h2 *ngIf = "animal.ad.hasOwnProperty('list_price')">
+                    {{animal.ad.list_price.label}}
+                  </h2>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
